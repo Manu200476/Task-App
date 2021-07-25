@@ -6,17 +6,18 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
 import NavBar from './components/NavBar'
+
 export default {
   methods: {
-    ...mapActions(['loadDatainDB'])
+    ...mapActions(['loadDatainDB']),
   },
-  created(){
+  created() {
     this.loadDatainDB()
   },
   components: {
-    NavBar
-  }
+    NavBar,
+  },
 }
 </script>

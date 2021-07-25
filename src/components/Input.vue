@@ -41,7 +41,7 @@
 export default {
   name: 'Input',
   props: {
-    tarea: Object
-  }
+    tarea: Object,
+  },
 }
 </script>

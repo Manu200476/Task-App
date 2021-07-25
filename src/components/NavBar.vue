@@ -11,14 +11,15 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-    computed: {
-      ...mapGetters(['checkUser'])
-    },
-    methods: {
-      ...mapActions(['closeSesion'])
-    }
+  computed: {
+    ...mapGetters(['checkUser']),
+  },
+  methods: {
+    ...mapActions(['closeSesion']),
+  },
 }
 </script>
 

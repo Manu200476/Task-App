@@ -13,30 +13,31 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'SignUp',
-  data(){
-    return{
+  data() {
+    return {
       email: '',
       password: '',
     }
   },
   computed: {
-    validation(){
-      if(this.email.includes('@') & this.password.length > 6){
+    validation() {
+      if (this.email.includes('@') & this.password.length > 6) {
         return false
       }
       return true
-    }
+    },
   },
   methods: {
     ...mapActions(['signUp']),
-    userSignUp(){
-      this.signUp({email: this.email, password: this.password})
+    userSignUp() {
+      this.signUp({ email: this.email, password: this.password })
       this.email = ''
       this.password = ''
-    }
-  }
+    },
+  },
 }
 </script>

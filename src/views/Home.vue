@@ -7,27 +7,29 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
 import Input from '../components/Input'
 import TaskTable from '../components/TaskTable'
+
 const shortid = require('shortid')
+
 export default {
   name: 'Home',
-  data(){
+  data() {
     return {
       object: {
         id: '',
         name: '',
         categoria: [],
         estado: '',
-        numero: 0
+        numero: 0,
       },
     }
   },
   methods: {
     ...mapActions(['setTask']),
-    procesarFormulario(){
-      /*Generar IDs*/
+    procesarFormulario() {
+      /* Generar IDs */
       this.object.id = shortid.generate()
 
       this.setTask(this.object)
@@ -37,13 +39,13 @@ export default {
         name: '',
         categoria: [],
         estado: '',
-        numero: 0
+        numero: 0,
       }
-    }
+    },
   },
   components: {
     Input,
-    TaskTable
-  }
+    TaskTable,
+  },
 }
 </script>

@@ -3,24 +3,17 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  parser: 'babel-eslint',
   parserOptions: {
+    parser: 'babel-eslint',
     ecmaVersion: 12,
-    sourceType: 'module',
-    allowImportExportEverywhere: false,
-    ecmaFeatures: {
-      globalReturn: false,
-    },
-    babelOptions: {
-      configFile: './babel.config.js',
-    },
   },
   extends: [
     'airbnb-base',
     'plugin:vue/essential',
-    'plugin:prettier/recommended',
   ],
-  plugins: [
-    'vue',
-  ],
+  plugins: ['vue'],
+  rules: {
+    semi: ['error', 'never'],
+    'max-len': ['error', { code: 120, ignoreUrls: true }],
+  },
 }
