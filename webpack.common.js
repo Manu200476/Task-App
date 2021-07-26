@@ -5,7 +5,6 @@ const path = require('path')
 
 module.exports = {
   mode: 'production',
-  entry: './app/entry',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
@@ -16,7 +15,10 @@ module.exports = {
       {
         test: /\.js$/i,
         loader: 'babel-loader',
-        type: 'javascript',
+      },
+      {
+        test: /\.vue$/i,
+        loader: 'vue-loader',
       },
       {
         test: /\.css$/i,
@@ -33,14 +35,6 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    port: 3000,
-    compress: false,
-    historyApiFallback: true,
-    hot: true,
-    https: true,
   },
   plugins: [
     new MiniCssExtractPlugin(),
