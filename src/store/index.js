@@ -2,6 +2,10 @@ import { createStore } from 'vuex'
 import router from '../router/index.js'
 import localStorageService from '../services/localstorage.service.js'
 
+const { FIREBASE_SIGN_IN } = process.env
+const { FIREBASE_SIGN_UP } = process.env
+const { FIREBASE_BBDD } = process.env
+
 export default createStore({
   state: {
     tasks: [],
@@ -36,7 +40,7 @@ export default createStore({
   actions: {
     async signUp({ commit }, user) {
       try {
-        const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAjrp5-zUBkePMeUee3FYUsJTykUXwnC4M', {
+        const res = await fetch(FIREBASE_SIGN_UP, {
           method: 'POST',
           body: JSON.stringify({
             email: user.email,
@@ -58,7 +62,7 @@ export default createStore({
     },
     async signIn({ commit }, user) {
       try {
-        const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAjrp5-zUBkePMeUee3FYUsJTykUXwnC4M', {
+        const res = await fetch(FIREBASE_SIGN_IN, {
           method: 'POST',
           body: JSON.stringify({
             email: user.email,
@@ -89,7 +93,7 @@ export default createStore({
         commit('setUser', null)
       }
       try {
-        const res = await fetch(`https://udemy-vue-c4fe5-default-rtdb.europe-west1.firebasedatabase.app/tareas/${state.user.localId}.json?auth=${state.user.idToken}`)
+        const res = await fetch(`${FIREBASE_BBDD}/${state.user.localId}.json?auth=${state.user.idToken}`)
         const data = await res.json()
         const taskArray = []
         for (const id in data) {
@@ -102,7 +106,7 @@ export default createStore({
     },
     async setTask({ commit, state }, task) {
       try {
-        const res = await fetch(`https://udemy-vue-c4fe5-default-rtdb.europe-west1.firebasedatabase.app/tareas/${state.user.localId}/${task.id}.json?auth=${state.user.idToken}`, {
+        const res = await fetch(`${FIREBASE_BBDD}/${state.user.localId}/${task.id}.json?auth=${state.user.idToken}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -117,7 +121,7 @@ export default createStore({
     },
     async deleteTask({ commit, state }, id) {
       try {
-        await fetch(`https://udemy-vue-c4fe5-default-rtdb.europe-west1.firebasedatabase.app/tareas/${state.user.localId}/${id}.json?auth=${state.user.idToken}`, {
+        await fetch(`${FIREBASE_BBDD}/${state.user.localId}/${id}.json?auth=${state.user.idToken}`, {
           method: 'DELETE',
         })
         commit('delete', id)
@@ -130,7 +134,7 @@ export default createStore({
     },
     async updateTask({ commit, state }, task) {
       try {
-        const res = await fetch(`https://udemy-vue-c4fe5-default-rtdb.europe-west1.firebasedatabase.app/tareas/${state.user.localId}/${task.id}.json?auth=${state.user.idToken}`, {
+        const res = await fetch(`${FIREBASE_BBDD}/${state.user.localId}/${task.id}.json?auth=${state.user.idToken}`, {
           method: 'PATCH',
           body: JSON.stringify(task),
         })
