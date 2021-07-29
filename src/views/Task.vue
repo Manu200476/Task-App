@@ -8,7 +8,6 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import Input from '../components/Input'
-import TaskTable from '../components/TaskTable'
 
 export default {
   name: 'Task',
@@ -23,7 +22,6 @@ export default {
   },
   components: {
     Input,
-    TaskTable,
   },
 }
 </script>

@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class="mt-4">
       <label for="name" class="form-label">Nombre</label>
       <input id="name" type="text" placeholder="Nombre..." class="form-control" v-model="tarea.name"/>
@@ -35,6 +36,7 @@
       <input id="number" type="number" min="0" class="form-control" v-model.number="tarea.numero"/>
     </div>
     <button class="btn btn-dark btn-block mt-3" type="submit">Enviar</button>
+  </div>
 </template>
 
 <script>

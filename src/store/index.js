@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import router from '../router/index.js'
+import localStorageService from '../services/localstorage.service.js'
 
 export default createStore({
   state: {
@@ -50,7 +51,7 @@ export default createStore({
         }
         commit('setUser', data)
         router.push('/')
-        localStorage.setItem('user', JSON.stringify(data))
+        localStorageService.set('user', data)
       } catch (e) {
         console.error(e)
       }
@@ -66,14 +67,12 @@ export default createStore({
           }),
         })
         const data = await res.json()
-        console.log('data', data)
         if (data.error) {
-          console.error(data.error)
           return
         }
         commit('setUser', data)
         router.push('/')
-        localStorage.setItem('user', JSON.stringify(data))
+        localStorageService.set('user', data)
       } catch (e) {
         console.error(e)
       }
@@ -81,7 +80,7 @@ export default createStore({
     closeSesion({ commit }) {
       commit('setUser', null)
       router.push('/login')
-      localStorage.removeItem('user')
+      localStorageService.remove('user')
     },
     async loadDatainDB({ commit, state }) {
       if (localStorage.getItem('user')) {
@@ -111,7 +110,6 @@ export default createStore({
           body: JSON.stringify(task),
         })
         const data = res.json()
-        console.log(data)
       } catch (e) {
         console.log(e)
       }
@@ -148,7 +146,5 @@ export default createStore({
     checkUser(state) {
       return !!state.user
     },
-  },
-  modules: {
   },
 })
