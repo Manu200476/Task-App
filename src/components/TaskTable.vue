@@ -44,10 +44,15 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'TaskTable',
   computed: {
-    ...mapState(['tasks']),
+    ...mapState({
+      tasks: (state) => state.tasks.tasks,
+    }),
   },
   methods: {
-    ...mapActions(['deleteTask', 'editTask']),
+    ...mapActions({
+      deleteTask: 'tasks/deleteTask',
+      editTask: 'tasks/editTask',
+    }),
   },
 }
 </script>

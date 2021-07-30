@@ -27,7 +27,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setTask']),
+    ...mapActions({
+      setTask: 'tasks/setTask',
+    }),
     procesarFormulario() {
       /* Generar IDs */
       this.object.id = shortid.generate()

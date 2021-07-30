@@ -25,14 +25,16 @@ export default {
   },
   computed: {
     validation() {
-      if (this.email.includes('@') & this.password.length > 6) {
+      if (this.email.includes('@') && this.password.length > 6) {
         return false
       }
       return true
     },
   },
   methods: {
-    ...mapActions(['signIn']),
+    ...mapActions({
+      signIn: 'users/signIn',
+    }),
     userSignIn() {
       this.signIn({ email: this.email, password: this.password })
       this.email = ''

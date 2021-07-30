@@ -15,10 +15,14 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(['checkUser']),
+    ...mapGetters({
+      checkUser: 'users/checkUser',
+    }),
   },
   methods: {
-    ...mapActions(['closeSesion']),
+    ...mapActions({
+      closeSesion: 'users/closeSesion',
+    }),
   },
 }
 </script>

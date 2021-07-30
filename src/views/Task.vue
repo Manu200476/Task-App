@@ -12,10 +12,15 @@ import Input from '../components/Input'
 export default {
   name: 'Task',
   computed: {
-    ...mapState(['task']),
+    ...mapState({
+      task: (state) => state.tasks.task,
+    }),
   },
   methods: {
-    ...mapActions(['setTarea', 'updateTask']),
+    ...mapActions({
+      updateTask: 'tasks/updateTask',
+      setTarea: 'tasks/setTarea',
+    }),
   },
   created() {
     this.setTarea(this.$route.params.id)
